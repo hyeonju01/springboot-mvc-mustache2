@@ -58,13 +58,13 @@ public class ArticleController {
         }
     }
 
-//    @PostMapping("") //articles
-//    public String add(ArticleDto articleDto) {
-//        log.info(articleDto.getTitle());
-//        Article savedArticle = articleRepository.save(articleDto.toEntity());
-//        log.info("generatedId:{}", savedArticle.getId());
-//        return String.format("redirect:/articles/%d", savedArticle.getId());
-//    }
+    @PostMapping("") //articles
+    public String add(ArticleDto articleDto) {
+        log.info(articleDto.getTitle());
+        Article savedArticle = articleRepository.save(articleDto.toEntity());
+        log.info("generatedId:{}", savedArticle.getId());
+        return String.format("redirect:/articles/%d", savedArticle.getId());
+    }
 
     @PostMapping(value = "/posts")
     public String createArticle(ArticleDto form) {
