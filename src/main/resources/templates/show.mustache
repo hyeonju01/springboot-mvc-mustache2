@@ -1,0 +1,22 @@
+{{>layouts/header}}
+<!--show.mustache + bootstrap 적용-->
+<div>
+    이 페이지는 SHOW입니다.
+    {{#article}}
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted"> {{id}} </h6>
+                <p class="card-text">{{content}}</p>
+                <a href="/articles/new">new article</a>
+                <a href="/articles">list article</a>
+            </div>
+        </div>
+    {{/article}}
+
+</div>
+
+
+
+
+{{>layouts/footer}}
