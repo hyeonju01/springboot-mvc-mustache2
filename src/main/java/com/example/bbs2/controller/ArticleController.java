@@ -7,10 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,6 +55,25 @@ public class ArticleController {
         }
     }
 
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable Long id, Model model) {
+        Optional<Article> optionalArticle = articleRepository.findById(id);
+        if(!optionalArticle.isEmpty()) {
+            model.addAttribute("article", optionalArticle.get());
+            return "/articles/edit";
+        } else {
+            model.addAttribute("message", String.format("%d가 없습니다.", id));
+            return "error";
+        }
+    }
+
+    // delete 기능 구현
+    @GetMapping("/{id}/delete")
+    public String edit(@PathVariable Long id) {
+        articleRepository.deleteById(id); //return type- void
+        return "redirect:/articles";
+    }
+
     @PostMapping("") //articles
     public String add(ArticleDto articleDto) {
         log.info(articleDto.getTitle());
@@ -78,4 +94,14 @@ public class ArticleController {
 
         return "redirect:/articles/" + saved.getId();
     }
+
+    // update 컨트롤러
+    @PostMapping("/{id}/update")
+    public String update(@PathVariable Long id, ArticleDto form, Model model) {
+        log.info("title: {} content: {}", form.getTitle(), form.getContent());
+        Article article = articleRepository.save(form.toEntity());
+        model.addAttribute("article", article);
+        return String.format("redirect:/articles/%d", article.getId());
+    }
+
 }

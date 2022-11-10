@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "article2") //article2 테이블을 생성해준다.
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
