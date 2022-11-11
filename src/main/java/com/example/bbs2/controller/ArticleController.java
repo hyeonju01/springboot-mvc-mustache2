@@ -103,5 +103,4 @@ public class ArticleController {
         model.addAttribute("article", article);
         return String.format("redirect:/articles/%d", article.getId());
     }
-
 }
