@@ -30,5 +30,4 @@ public class HospitalController {
         model.addAttribute("next", pageable.next().getPageNumber());
         return "hospital/list";
     }
-
 }

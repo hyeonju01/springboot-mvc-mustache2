@@ -16,6 +16,8 @@ class HospitalRepositoryTest {
     @Autowired
     HospitalRepository hospitalRepository;
 
+
+
     @Test
     @DisplayName("BusinessTypeName이 보건소, 보건지소, 보건진료소인 데이터 추출")
     void findByBusinessTypeNameIn() {
@@ -25,9 +27,44 @@ class HospitalRepositoryTest {
         includes.add("보건진료소");
 
         List<Hospital> hospitals = hospitalRepository.findByBusinessTypeNameIn(includes);
-        for (var hospital: hospitals
-             ) {
+        for (var hospital: hospitals) {
             System.out.println(hospital.getHospitalName());
         }
+    }
+
+    @Test
+    void containing() {
+        List<Hospital> hospitals = hospitalRepository.findByRoadNameAddressContaining("송파구");
+        printHospitalNamdAndAddress(hospitals);
+    }
+
+    @Test
+    void startsWith() {
+        List<Hospital> hospitals = hospitalRepository.findByHospitalNameStartsWith("경희");
+        printHospitalNamdAndAddress(hospitals);
+    }
+
+    @Test
+    void endsWith() {
+        List<Hospital> hospitals = hospitalRepository.findByHospitalNameEndsWith("병원");
+        printHospitalNamdAndAddress(hospitals);
+    }
+
+    @Test
+    void between() {
+        List<Hospital> hospitals = hospitalRepository.findByTotalNumberOfBedsBetween(10, 20);
+        for (var hospital : hospitals) {
+            System.out.printf("%s | %s %d \n", hospital.getHospitalName(),
+                    hospital.getRoadNameAddress(), hospital.getTotalNumberOfBeds());
+        }
+    }
+
+    // 출력 테스트 부분 분리
+    void printHospitalNamdAndAddress(List<Hospital> hospitals) {
+        for (var hospital : hospitals) {
+            System.out.printf("%s | %s %f \n", hospital.getHospitalName(),
+                    hospital.getRoadNameAddress(), hospital.getTotalAreaSize());
+        }
+        System.out.println(hospitals.size());
     }
 }
