@@ -59,6 +59,14 @@ class HospitalRepositoryTest {
         }
     }
 
+    @Test
+    void betweenOrderBy() {
+        List<Hospital> hospitals = hospitalRepository.findByPatientRoomCountBetweenOrderByPatientRoomCountDesc(10, 19);
+        for (var hospital : hospitals) {
+            System.out.printf("%s | %s %d \n", hospital.getHospitalName(),
+                    hospital.getRoadNameAddress(), hospital.getPatientRoomCount());
+        }
+    }
     // 출력 테스트 부분 분리
     void printHospitalNamdAndAddress(List<Hospital> hospitals) {
         for (var hospital : hospitals) {
