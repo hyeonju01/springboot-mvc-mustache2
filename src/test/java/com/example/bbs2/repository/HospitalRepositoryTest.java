@@ -52,7 +52,7 @@ class HospitalRepositoryTest {
 
     @Test
     void between() {
-        List<Hospital> hospitals = hospitalRepository.findByTotalNumberOfBedsBetween(10, 20);
+        List<Hospital> hospitals = hospitalRepository.findByTotalNumberOfBedsBetween(10, 19);
         for (var hospital : hospitals) {
             System.out.printf("%s | %s %d \n", hospital.getHospitalName(),
                     hospital.getRoadNameAddress(), hospital.getTotalNumberOfBeds());
