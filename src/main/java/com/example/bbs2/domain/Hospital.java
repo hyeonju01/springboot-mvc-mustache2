@@ -1,5 +1,6 @@
 package com.example.bbs2.domain;
 
+import com.example.bbs2.domain.dto.HospitalResponse;
 import lombok.Getter;
 
 import javax.persistence.Column;
@@ -23,4 +24,11 @@ public class Hospital {
     private Integer totalNumberOfBeds;
     private String businessTypeName;
     private Float totalAreaSize;
+
+    // HospitalEntity를 HospitalResponse Dto로 만들어주는 코드
+    public static HospitalResponse of(Hospital hospital) {
+        return new HospitalResponse(hospital.getId(), hospital.getRoadNameAddress(), hospital.getHospitalName(),
+                hospital.getPatientRoomCount(), hospital.getTotalNumberOfBeds(), hospital.getBusinessTypeName(),
+                hospital.getTotalAreaSize());
+    }
 }
