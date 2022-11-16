@@ -1,5 +1,6 @@
 package com.example.bbs2.domain.entity;
 
+import com.example.bbs2.domain.dto.ArticleResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,14 @@ public class Article {
     @Column
     private String content;
 
+    /*
     public Article(String title, String content) {
         this.title = title;
         this.content = content;
+    }
+     */
+
+    public static ArticleResponse of(Article article) {
+        return new ArticleResponse(article.getId(), article.getTitle(), article.getContent());
     }
 }
