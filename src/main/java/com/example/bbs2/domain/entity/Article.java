@@ -2,11 +2,13 @@ package com.example.bbs2.domain.entity;
 
 import com.example.bbs2.domain.dto.ArticleResponse;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Builder
 @Entity //객체를 인식해주는 어노테이션
 @Table(name = "article2") //article2 테이블을 생성해준다.
 @Getter
