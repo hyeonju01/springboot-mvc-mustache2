@@ -35,7 +35,7 @@ class ArticleRestControllerTest {
                 .title("title")
                 .content("content").build();
 
-        given(ArticleService.getArticle(1l)).willReturn(articleResponse);
+        given(articleService.getArticle(1l)).willReturn(articleResponse);
 
         Long articleId = 1l;
         String url = String.format("/api/v1/articles/%d", articleId);
